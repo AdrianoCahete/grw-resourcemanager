@@ -27,4 +27,5 @@ $ npm run build
 
 ## License
 
-[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) © [Adriano Caheté](https://www.profolio.com.br)
+Original script by [Wanztwurst](https://github.com/Wanztwurst/grw-resources)  
+Desktop App - [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) © [Adriano Caheté](https://www.profolio.com.br)

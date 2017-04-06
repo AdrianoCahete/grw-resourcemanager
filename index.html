@@ -5,7 +5,7 @@
 	</head>
 
 	<body>
-		<div class="layout100 flex">
+		<div class="layout100 flex header">
 			<div style="flex:1 1 auto;">
 				<h5>WARNING</h5>
 				<p>This game is protected by EasyAntiCheat and maybe other things I don't know of, but I find it very unlikely to be banned or sanctioned by adding resources over an API Ubisoft themselves implemented and didn't invest a single minute in security on. I mean, it's neither encrypted nor anyhow limited on the game side - like they want us to magically create resources from some electrones.</p>
@@ -24,7 +24,7 @@
 				<p>Wait for the go, see log on the right side for information regarding your connection status.<p>
 				<p>Make sure you disabled the Windows firewall, have the game running and are logged in (read: able to run around)</p>
 				
-				<div id="resourcesDiv" class="disabled">
+				<div id="resourcesContainer" class="disabled">
 					<h6>Select amount of resources</h6>
 					<input type="number" id="fuel" value="1000" /><label>Fuel</label>
 					<input type="number" id="meds" value="1000" /><label>Meds</label>
@@ -36,13 +36,14 @@
 
 				</div>
 			</div>
-			<div class="layout50">
+			<div class="layout50 logContainer">
 				<h6>Log</h6>
 				<div id="log"></div>
 			</div>
 		</div>
 
-		<div class="layout100">
+		<div class="layout100 footer">
+			<hr />
 			Ghost Recon Wildlands&copy;&#0153; is a trademark owned by Ubisoft and what, you know the drill. I don't own any of the images or content here, all credits go to Ubisoft for creating this awesome game and graphics. Thanks Ubi! Looking forward for some super cool dlc contents.
 		</div>
 
