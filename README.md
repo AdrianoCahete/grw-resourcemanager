@@ -1,8 +1,8 @@
 # Ghost Recon - Wildlands | Desktop Resource Manager
 
-This app is for sending resources to yout game
+This app is for sending resources to your game
 
-# Its a alpha version.
+# Its a alpha version
 No release yet.
 
 
