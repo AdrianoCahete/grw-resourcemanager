@@ -1,42 +1,30 @@
-# grw-resources
-#### Get Ghost Recon Wildlands resources on a single button press (actually two with some waiting and luck)
+# Ghost Recon - Wildlands | Desktop Resource Manager
 
-![https://wanztwurst.github.io/grw-resources/GRW-Resources.html](https://wanztwurst.github.io/grw-resources/res/comstools.png)
+This app is for sending resources to yout game
 
-
-## What it does
-
-Connects to your running GRW game on PC, sends your desired amount of resources, that's it.
-
-* Select amount
-* ???
-* Profit
+# Its a alpha version.
+No release yet.
 
 
-## How it works
+## Dev
 
-The game opens a web server when started. This way it communicates with the GRW HQ Android application - from which you can natively send resources to your main game. Exactly this is reproduced by this web app, but without the mini game bullshit, waiting time between the resource transfers or quantitiy limits.
-And because the game uses the handy WebSockets protocol, which your browser speaks as well, it can all be done from a webpage.
+```
+$ npm install
+```
 
-More details and instructions on the page itself.
+### Run
+
+```
+$ npm start
+```
+
+### Build
+
+```
+$ npm run build
+```
 
 
-## How to use it
+## License
 
-I tested Chromium and Firefox successfully, so probably Chrome will work as well. But Internet Explorer and Edge, oh boi - give it a try and post your experience to /dev/null.
-
-* Either download the files from github and use them local
-
-* or got to [this unencrypted page](http://crystal-mett.de/GRW-Resources.html) as it won't work on github directly (really, your modern browser tries to keep your gradma safe by not allowing mixed content - Github forces https, the game requires unsecured data - doesn't work in Chrome or Firefox nowadays)
-
-
-## Issues
-
-There is a nasty error I can't get rid of. It has something to do with websocket messages from the game containing something else beneath UTF-8 content. Because of that error I have to reload the whole page to give it a second, third, sometimes even more tries.
-So reloading is totally done intentional after each error, after some tries it always worked for me. Reloading stops automatically when the connection is usable.
-
-If you experience reloading over more than, lets say, 30 seconds - there is probably something wrong with either
-a) your game not running and logged in
-b) wrong ip address (if not locally)
-c) windows firewall is still up
-d) not enough internet points (aka reddit karma)
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) © [Adriano Caheté](https://www.profolio.com.br)
