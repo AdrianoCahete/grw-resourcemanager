@@ -1,9 +1,9 @@
 {
   "name": "ghostreconwildlands-resourcemanager",
   "productName": "GhostReconWildlands-ResourceManager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This app is for sending resources to your Ghost Recon Wildlands game",
-  "license": "GNU GPLv3",
+  "license": "GPL-3.0",
   "repository": "https://github.com/AdrianoCahete/grw-resourcemanager",
   "author": {
     "name": "Adriano Caheté",
@@ -14,7 +14,7 @@
     "preinstall": "npm install -g electron-packager",
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --platform win32",
+    "build": "electron-packager . --out=dist --asar --overwrite --platform win32 --arch all",
     "pack": "build --dir",
     "dist": "build"
   },
@@ -27,7 +27,7 @@
   ],
   "build": {
     "appId": "br.com.profolio.grwapp"
-},
+  },
   "keywords": [
     "ghost recon",
     "ghostrecon",
