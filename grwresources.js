@@ -4,6 +4,8 @@ var retry = 0;
 var noerror = true;
 var stopReloading = false; // stops reloading if set to true
 
+var ip = '127.0.0.1'; // For desktop app, just use localhost
+
 function giveMeResources() {
     if(socket != null && socket.readyState > 0) {
         if(socket.readyState == 1) {
@@ -14,9 +16,8 @@ function giveMeResources() {
             retryConnection();
         }
     } else {
-
-    // new connection
-    connect();
+        // new connection
+        connect();
     }
 }
 
@@ -34,9 +35,9 @@ function connect() {
     // disable btn
     document.getElementById('btn_connect').disabled = true;
 
-    // get ip
-    var ip = document.getElementById('ip').value;
-    if(ip == "") ip = '127.0.0.1';
+    // get ip -- Isn't necessary on desktop
+    //var ip = document.getElementById('ip').value;
+    //if(ip == "")    
 
     // start connection
     socket = new WebSocket("ws://"+ip+":8080/smartphone", "v1.phonescoring.gr.ubisoft.com");
@@ -61,22 +62,22 @@ function connect() {
 
     socket.onerror = function() {
         noerror = false;
-        log('error');
+        //log('error');
         retryConnection();
     };
 
     socket.onclose = function(e) {
         console.log(e);
         if(e.reason == 'CLOSE_MAX_PLAYERS_REACHED') {
-            log('too many connections, try reloading the page');
+            log('[ Closed ] Too many connections, try closing and reopen this app');
         }else if(e.reason == 'CLOSE_PROTOCOL_ERROR') {
-            log('closed by game, happens often - just wait it out');
+            log('[ Closed ] By game. Wait some time and try again.');
             //retryConnection();
         } else if(e.code == 1006) {
-            log('closed: is the game running on '+ip+'? firewall open?');
+            log('[ Closed ] Is the game running? Maybe your firewall is blocking connections from/to game');
             //retryConnection();
         } else {
-            log('closed with unexpected reason: '+e.reason);
+            log('[ Closed ] Unexpected reason: '+e.reason);
             console.log(e);
         }
     };
@@ -89,7 +90,7 @@ function retryConnection() {
     close();
 
     if(!stopReloading) {
-        log('reloading in 1s... may take some tries');
+        log('Reloading... May take some time.');
 
         window.setTimeout(function() {
             if(findGetParameter('ip') != null) {
@@ -97,7 +98,7 @@ function retryConnection() {
                 location.reload(); // magically works
             } else {
                 // add ip to url, reload
-                location.href = location.href + '?ip='+document.getElementById('ip').value;
+                location.href = location.href + '?ip='+ip;
             }
         }, 2000);
     }
@@ -118,7 +119,7 @@ function parseMessage(msg) {
         // phoneID given, nice - let's go
         if(phoneId == null) { // only once, server may send id multiple times
             phoneId = json.phoneID;
-            log('Step 1/3: PhoneID '+phoneId);
+            log('Step 1/3: Your ID '+phoneId);
 
             sendSyncEnd();
         }
@@ -137,7 +138,7 @@ function getPhoneIdHandshake() {
 
 // final connection
 function sendSyncEnd() {
-    log('Step 2/3: waiting for stable connection');
+    log('Step 2/3: Trying to connect into game...');
 
     var syncEnd = '{"root":{"__class":"PhoneDataCmdSyncEnd","phoneID":'+phoneId+'}}';
     socket.send(syncEnd);
@@ -180,9 +181,11 @@ function testConnection() {
 
         // enable btn
         document.getElementById('btn_giveMeRes').disabled = false;
-        log('Step 3/3: looks stable now, you may smash dat button to transfer your resources');
+        document.getElementById('resourcesDiv').classList.remove('disabled');
+        log('Step 3/3 | [ Connected ] You can transfer your resources now.');
+
         // ok
-        log('<span style="color:#00ff00;">ok</span>');
+        log('<span style="color:#00ff00;">OK</span>');
         document.getElementById('btn_stopReloading').style.display = 'none';
     }
 }
@@ -205,7 +208,7 @@ function findGetParameter(parameterName) {
 // recover ip from href
 function recoverIpAndConnect() {
     if(findGetParameter('ip') != null) {
-        document.getElementById('ip').value = findGetParameter('ip');
+        ip = findGetParameter('ip');
         connect();
 
         document.getElementById('btn_stopReloading').style.display = 'block';

@@ -6,31 +6,39 @@
   "license": "MIT",
   "repository": "AdrianoCahete/ghostreconwildlands-desktopcompanion",
   "author": {
-    "name": "",
+    "name": "Adriano Caheté",
     "email": "",
-    "url": "profolio.com.br"
+    "url": "https://www.profolio.com.br"
   },
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --all"
+    "build": "electron-packager . --out=dist --asar --overwrite --all",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "files": [
     "index.js",
     "index.html",
     "index.css"
   ],
+  "build": {
+    "appId": "br.com.profolio.grwapp"
+},
   "keywords": [
-    "electron-app",
-    "electron"
+    "ghost recon",
+    "ghostrecon",
+    "wildlands",
+    "grw"
   ],
   "dependencies": {
     "electron-debug": "^1.0.0"
   },
   "devDependencies": {
     "devtron": "^1.1.0",
-    "electron-packager": "^8.0.0",
     "electron": "^1.3.3",
+    "electron-packager": "^8.0.0",
+    "electron-winstaller": "^2.5.2",
     "xo": "^0.16.0"
   },
   "xo": {

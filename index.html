@@ -1,72 +1,51 @@
 <html>
-<head>
-<title>Ghost Recon Wildlands Resources</title>
+	<head>
+		<title>Ghost Recon Wildlands | Desktop Resource Manager</title>
+		<link rel="stylesheet" media="screen" href="./index.css" />
+	</head>
 
-<link rel="stylesheet" media="screen" href="inc/screen.css" />
-</head>
+	<body>
+		<div class="layout100 flex">
+			<div style="flex:1 1 auto;">
+				<h5>WARNING</h5>
+				<p>This game is protected by EasyAntiCheat and maybe other things I don't know of, but I find it very unlikely to be banned or sanctioned by adding resources over an API Ubisoft themselves implemented and didn't invest a single minute in security on. I mean, it's neither encrypted nor anyhow limited on the game side - like they want us to magically create resources from some electrones.</p>
+			</div>
 
-<body>
-
-	<div class="layout100 flex">
-		<div style="flex:1 1 auto;">
-			<h5>You are about to cheat...</h5>
-			<p>
-				...which is totally okay in my opinion in this coop game &ndash; at least when it comes to resources. You may find gathering them too grindy, maybe you don't like to capture all the transports &ndash; decide yourself if you need this.
-				<br />
-				But remember: this is a big part of the game and you are probably throwing away that nice game time you could have had.
-			</p>
-			<p>
-				Using this tool will, if nothing goes wrong, grant you the selected amount of resources on your <strong>currently logged in save slot</strong> in Ghost Recon Wildlands.
-			</p>
-			<p>
-				You might want to give it a second thought: <strong>there is no way back!</strong>
-			</p>
-
-			<h5>WARNING</h5>
-			<p>
-				This game is protected by EasyAntiCheat and maybe other things I don't know of, but I find it very unlikely to be banned or sanctioned by adding resources over an API Ubisoft themselves implemented and didn't invest a single minute in security on. I mean, it's neither encrypted nor anyhow limited on the game side - like they want us to magically create resources from some electrones.
+			<img src="./res/grw_logo.png" style="flex: 0 0 270px; margin-left:20px; height:268px;">
 		</div>
 
-		<img src="res/grw_logo.png" style="flex: 0 0 270px; margin-left:20px; height:268px;">
-	</div>
+		<div class="flex">
+			<div class="layout50">
 
-	<div class="flex">
-		<div class="layout50">
-			<h6>1. Connect to game</h6>
-			<input type="text" id="ip" value="127.0.0.1" placeholder="127.0.0.1"><label>ip</label>
-			<p>Use 127.0.0.1 if you opened this page on the same PC your game is running on. If it's a different device, enter corresponding ip address here (may work with consoles as well, but I don't really give a damn on you gamepad using scum).</p>
+				<button onclick="stopReloading = false; connect();" id="btn_connect" style="display:inline-block">Connect to game</button><label id="ample">&nbsp;</label>
+				<button onclick="stopReloading = true; location.href = 'index.html'" id="btn_stopReloading" style="display:none">Stop reloading</button>
 
-			<button onclick="stopReloading = false; connect();" id="btn_connect" style="display:inline-block">Connect to game</button><label id="ample">&nbsp;</label>
-			<button onclick="stopReloading = true; location.href = 'GRW-Resources.html'" id="btn_stopReloading" style="display:none">Stop reloading</button>
+				<h6>Wait for connection</h6>
+				<p>Wait for the go, see log on the right side for information regarding your connection status.<p>
+				<p>Make sure you disabled the Windows firewall, have the game running and are logged in (read: able to run around)</p>
+				
+				<div id="resourcesDiv" class="disabled">
+					<h6>Select amount of resources</h6>
+					<input type="number" id="fuel" value="1000" /><label>Fuel</label>
+					<input type="number" id="meds" value="1000" /><label>Meds</label>
+					<input type="number" id="coms" value="1000" /><label>Coms</label>
+					<input type="number" id="food" value="1000" /><label>Food</label>
 
-			<h6>2. wait for connection</h6>
-			<p>Wait for the go, see log on the right side for information regarding your connection status.<p>
-			<p>If you have problems here, make sure you disabled the Windows firewall, have the game running and are logged in (read: able to run around)</p>
+					<h6>Transfer resources</h6>
+					<button onclick="giveMeResources();" id="btn_giveMeRes" disabled="true">Transfer Resources</button>
 
-			<h6>3. Select amount of resources</h6>
-			<input type="number" id="fuel" value="1000" /><label>Fuel</label>
-			<input type="number" id="meds" value="1000" /><label>Meds</label>
-			<input type="number" id="coms" value="1000" /><label>Coms</label>
-			<input type="number" id="food" value="1000" /><label>Food</label>
-
-			<h6>3. Transfer resources</h6>
-			<button onclick="giveMeResources();" id="btn_giveMeRes" disabled="true">Give resources</button>
-
-			<p>
-				As of March 10, 2017 there is no limit on how many and how often you can transfer resources. You may press the button multiple times if it pleases you. <br />
-				My recommendation: don't even press it once, rather group up with some nice peeps, have some drugs and fun and earn the resources yourself, lazy shit.
-			</p>
+				</div>
+			</div>
+			<div class="layout50">
+				<h6>Log</h6>
+				<div id="log"></div>
+			</div>
 		</div>
-		<div class="layout50">
-			<h6>Log</h6>
-			<div id="log"></div>
+
+		<div class="layout100">
+			Ghost Recon Wildlands&copy;&#0153; is a trademark owned by Ubisoft and what, you know the drill. I don't own any of the images or content here, all credits go to Ubisoft for creating this awesome game and graphics. Thanks Ubi! Looking forward for some super cool dlc contents.
 		</div>
-	</div>
 
-	<div class="layout100">
-		Ghost Recon Wildlands&copy;&#0153; is a trademark owned by Ubisoft and what, you know the drill. I don't own any of the images or content here, all credits go to Ubisoft for creating this awesome game and graphics. Thanks Ubi! Looking forward for some super cool dlc contents.
-	</div>
-
-	<script src="inc/script.js"></script>
-</body>
+		<script src="./grwresources.js"></script>
+	</body>
 </html>

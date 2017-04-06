@@ -1,27 +1,108 @@
-html,
-body {
-	padding: 0;
-	margin: 0;
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	font-family: -apple-system, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 16px;
+    font-family: Arial, Verdana, sans-serif;
+    color: #FFF;
+    background: #000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    padding-bottom: 20px;
 }
 
-header {
-	position: absolute;
-	width: 500px;
-	height: 250px;
-	top: 50%;
-	left: 50%;
-	margin-top: -125px;
-	margin-left: -250px;
-	text-align: center;
+.flex {
+    display: flex !important;
+    flex-direction: row;
 }
 
-header h1 {
-	font-size: 60px;
-	font-weight: 100;
-	margin: 0;
-	padding: 0;
+.layout50, .layout100 {
+    vertical-align: top;
+    padding: 20px;
+    margin: 20px 20px 0 20px;
+}
+
+.layout50 {
+    flex: 1 1 50%;
+    display: inline-block;
+}
+.layout50:first-child {
+    margin-right: 10px;
+}
+.layout50:last-child {
+    margin-left: 10px;
+}
+
+.layout100 {
+    width: calc(100% - 80px);
+    display: block;
+}
+
+h5 {
+    margin: 30px 0 10px 0;
+    font-size: 140%;
+    font-weight: bold;
+}
+
+h6 {
+    margin: 30px 0 10px 0;
+    font-size: 130%;
+    font-weight: bold;
+}
+
+h5:first-child, h6:first-child {
+    margin-top:0;
+}
+
+label {
+    background: rgba(255, 255, 255, 0.75);
+    padding: 8px;
+    width: 60px;
+    display: inline-block;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    clear: right;
+}
+
+button {
+    cursor: pointer;
+}
+
+button,input {
+    font-size: 16px;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 2px;
+    border: 0;
+    background: rgb(15, 115, 179);
+    opacity: 1;
+    color: #fff;
+    width: 50%;
+}
+
+input {
+    color: #000;
+    background: #fff;
+}
+
+button[disabled] {
+    opacity: 0.6;
+}
+
+#ample {
+    background: rgb(218, 139, 46);
+}
+#ample.connecting {
+    background: rgb(218, 46, 46);
+}
+#ample.connected {
+    background: rgb(19, 187, 10);
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
 }
