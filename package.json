@@ -8,15 +8,15 @@
   "author": {
     "name": "Adriano Caheté",
     "email": "",
-    "url": "https://www.profolio.com.br"
+    "url": "https://www.profolio.com.br/grwapp"
   },
   "scripts": {
     "preinstall": "npm install -g electron-packager",
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --platform win32 --arch all",
+    "build": "electron-packager . --out=release --asar --overwrite --platform win32 --arch all",
     "pack": "build --dir",
-    "dist": "build"
+    "release": "build"
   },
   "files": [
     "index.js",
