@@ -12,7 +12,7 @@ var ip = '127.0.0.1'; // For desktop app, just use localhost
 function giveMeResources() {
     if(socket != null && socket.readyState > 0) {
         if(socket.readyState == 1) {
-            // already connected and ready, just send the cash
+            // already connected and ready, just send resources
             sendRes();
         } else {
             // something went wrong
@@ -41,7 +41,7 @@ function connect() {
 
     // get ip -- Isn't necessary on desktop
     //var ip = document.getElementById('ip').value;
-    //if(ip == "")    
+    //if(ip == "")
 
     // start connection
     socket = new WebSocket("ws://"+ip+":8080/smartphone", "v1.phonescoring.gr.ubisoft.com");
@@ -60,7 +60,7 @@ function connect() {
             parseMessage(e.data);
             //log(e.data);
         } else {
-            log('unknown message type');
+            log('Unknown message type');
         }
     };
 
@@ -96,7 +96,7 @@ function retryConnection() {
     close();
 
     if(!stopReloading) {
-        
+
 
         window.setTimeout(function() {
             if(findGetParameter('ip') != null) {
@@ -125,7 +125,7 @@ function parseMessage(msg) {
         // phoneID given, nice - let's go
         if(phoneId == null) { // only once, server may send id multiple times
             phoneId = json.phoneID;
-            log('<span class="log info">Your internal ID is</span> <span>'+phoneId+'</span>');
+            //log('<span class="log info">Your internal ID is</span> <span>'+phoneId+'</span>'); // Isn't needed for final user
 
             sendSyncEnd();
         }
@@ -149,7 +149,7 @@ function sendSyncEnd() {
     var syncEnd = '{"root":{"__class":"PhoneDataCmdSyncEnd","phoneID":'+phoneId+'}}';
     socket.send(syncEnd);
 
-    // wait 3s until unlocking button - probably works if there was no error yet
+    // wait 2s until unlocking button - probably works if there was no error yet
     window.setTimeout(testConnection, 2000);
 }
 
@@ -160,7 +160,8 @@ function sendRes() {
     var coms = document.getElementById('coms').value;
     var meds = document.getElementById('meds').value;
 
-    log('<span class="log success">Resources sent</span>');
+    log('<span class="log success">Resources sent:</span>');
+	log('<span class="log info">Fuel:'+fuel+' | Food:'+food+' | CommTools: '+coms+' | Medicine: '+meds+'</span>')
 
     //var resStr = '{"root":{"__class":"PhoneDataCmdResourceUpdate","clientVersion":"0.1","Gasoline":500,"FoodPacks":1500,"ComTools":1500,"Medecine":1500}}'; // string to send
     var resStr = '{"root":{"__class":"PhoneDataCmdResourceUpdate","clientVersion":"0.1","Gasoline":'+fuel+',"FoodPacks":'+food+',"ComTools":'+coms+',"Medecine":'+meds+'}}'; // string to send
@@ -196,7 +197,7 @@ function testConnection() {
     }
 }
 
-// get get param from url (ip backup)
+// get param from url (ip backup)
 // credits to Querty http://stackoverflow.com/a/21210643/179669
 function findGetParameter(parameterName) {
     var result = null,
